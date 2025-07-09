@@ -1,4 +1,3 @@
-// server.ts
 import app from './app';
 import { env } from './config/env.config';
 import connectDB from './config/db.config';
