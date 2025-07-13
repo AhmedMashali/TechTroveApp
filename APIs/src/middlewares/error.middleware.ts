@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { errorResponse } from '../utils/apiResponse';
-import { AppError } from '../utils/appError';
+import { errorResponse } from '../utils/api-response';
+import { AppError } from '../utils/app-error';
 
 export const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunction) => {
     let { message, statusCode } = err;

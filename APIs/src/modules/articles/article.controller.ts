@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { successResponse } from '../../utils/apiResponse';
+import { successResponse } from '../../utils/api-response';
 import * as articlesService from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UserDocument } from '../users/user.model';

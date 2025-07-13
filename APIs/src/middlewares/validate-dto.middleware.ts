@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
-import { errorResponse } from '../utils/apiResponse';
+import { errorResponse } from '../utils/api-response';
 
 export function validateDto(dtoClass: any, source: 'body' | 'params' | 'query' = 'body') {
     return async (req: Request, res: Response, next: NextFunction): Promise<void> => {

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import * as authService from './auth.service';
-import { successResponse, errorResponse } from '../../utils/apiResponse';
+import { successResponse, errorResponse } from '../../utils/api-response';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 

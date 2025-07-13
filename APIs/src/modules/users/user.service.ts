@@ -1,5 +1,5 @@
 import { User, UserDocument } from './user.model';
-import { AppError } from '../../utils/appError';
+import { AppError } from '../../utils/app-error';
 import { CreateUserDto } from './dto/create-user.dto';
 
 export const createUser = async (createUserDto: CreateUserDto): Promise<UserDocument> => {

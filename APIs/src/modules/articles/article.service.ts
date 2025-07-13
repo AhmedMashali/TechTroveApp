@@ -1,7 +1,7 @@
 import { Article, ArticleDocument } from './article.model';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UserDocument } from '../users/user.model';
-import { AppError } from '../../utils/appError';
+import { AppError } from '../../utils/app-error';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { GetSingleArticleDto } from './dto/get-single-article.dto';
 import { GetArticleListDto } from './dto/get-article-list.dto';
