@@ -3,14 +3,11 @@ import { validate } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
 import { errorResponse } from '../utils/apiResponse';
 
-export function validateDto(dtoClass: any) {
+export function validateDto(dtoClass: any, source: 'body' | 'params' | 'query' = 'body') {
     return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-        if (!req.body || Object.keys(req.body).length === 0) {
-            errorResponse(res, 'Request body is required', 400);
-            return;
-        }
+        const data = req[source];
 
-        const dtoObject = plainToInstance(dtoClass, req.body);
+        const dtoObject = plainToInstance(dtoClass, data);
         const errors = await validate(dtoObject);
 
         if (errors.length > 0) {
@@ -22,7 +19,7 @@ export function validateDto(dtoClass: any) {
             return;
         }
 
-        req.body = dtoObject;
+        Object.assign(req[source], dtoObject);
         next();
     };
 }
