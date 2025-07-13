@@ -13,7 +13,7 @@ const jwtOptions: StrategyOptions = {
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async (req, payload, done) => {
     try {
-        const user = await User.findById(payload.id);
+        const user = await User.findById(payload._id);
 
         if (!user) {
             return done(null, false, { message: 'User not found' });
