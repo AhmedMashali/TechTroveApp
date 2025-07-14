@@ -20,5 +20,8 @@ export const useAuthStore = create<AuthState>((set) => ({
 
 export const getAccessToken = (): string | null =>
     useAuthStore.getState().accessToken;
+
 export const setAccessToken = (token: string) =>
     useAuthStore.getState().setAccessToken(token);
+
+export const isLoggedIn = (): boolean => !!useAuthStore.getState().accessToken;

@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -9,11 +8,10 @@ import WrittIcon from 'remixicon-react/QuillPenLineIcon';
 import ArticleIcon from 'remixicon-react/ArticleLineIcon';
 import AboutIcon from 'remixicon-react/InformationLineIcon';
 import useCurrentTab from '@/hooks/useCurrentTab';
-import { useIsLoggedIn } from '@/hooks/auth/useRegister';
+import { isLoggedIn } from '@/store/auth';
 
 const Navbar = () => {
     const activeTab = useCurrentTab();
-    const isLoggedIn = useIsLoggedIn();
 
     return (
         <>
@@ -39,18 +37,20 @@ const Navbar = () => {
                                 Home
                             </Link>
                         </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <Link
-                                to='/my-articles'
-                                className={`text-md text-black hover:text-gray-500 ${activeTab === 'my-articles' ? 'font-bold' : ''}`}
-                            >
-                                <ArticleIcon
-                                    size={22}
-                                    className='mr-1 inline-block pb-1'
-                                />
-                                My Articles
-                            </Link>
-                        </NavigationMenuItem>
+                        {isLoggedIn() && (
+                            <NavigationMenuItem>
+                                <Link
+                                    to='/my-articles'
+                                    className={`text-md text-black hover:text-gray-500 ${activeTab === 'my-articles' ? 'font-bold' : ''}`}
+                                >
+                                    <ArticleIcon
+                                        size={22}
+                                        className='mr-1 inline-block pb-1'
+                                    />
+                                    My Articles
+                                </Link>
+                            </NavigationMenuItem>
+                        )}
                         <NavigationMenuItem>
                             <Link
                                 to='/about'
@@ -66,19 +66,7 @@ const Navbar = () => {
                     </NavigationMenu>
 
                     <NavigationMenu className='flex items-center space-x-4'>
-                        <NavigationMenuItem>
-                            <Link
-                                to='/create'
-                                className={`text-md text-black hover:text-gray-500 ${activeTab === 'create' ? 'font-bold' : ''}`}
-                            >
-                                <WrittIcon
-                                    size={22}
-                                    className='mr-1 inline-block pb-1'
-                                />
-                                Write
-                            </Link>
-                        </NavigationMenuItem>
-                        {!isLoggedIn ? (
+                        {!isLoggedIn() ? (
                             <>
                                 <NavigationMenuItem>
                                     <Link
@@ -98,14 +86,28 @@ const Navbar = () => {
                                 </NavigationMenuItem>
                             </>
                         ) : (
-                            <NavigationMenuItem>
-                                <Link
-                                    to='/register'
-                                    className={`text-md text-black hover:text-gray-500 ${activeTab === 'register' ? 'font-bold' : ''}`}
-                                >
-                                    Sign Out
-                                </Link>
-                            </NavigationMenuItem>
+                            <>
+                                <NavigationMenuItem>
+                                    <Link
+                                        to='/create'
+                                        className={`text-md text-black hover:text-gray-500 ${activeTab === 'create' ? 'font-bold' : ''}`}
+                                    >
+                                        <WrittIcon
+                                            size={22}
+                                            className='mr-1 inline-block pb-1'
+                                        />
+                                        Write
+                                    </Link>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <Link
+                                        to='/register'
+                                        className={`text-md text-black hover:text-gray-500 ${activeTab === 'register' ? 'font-bold' : ''}`}
+                                    >
+                                        Sign Out
+                                    </Link>
+                                </NavigationMenuItem>
+                            </>
                         )}
                     </NavigationMenu>
                 </div>

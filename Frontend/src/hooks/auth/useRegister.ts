@@ -27,7 +27,9 @@ const logoutUser = async () => {
 export const useLogin = () =>
     useMutation({
         mutationFn: loginUser,
-        onSuccess: ({ accessToken, user }) => {
+        onSuccess: (authRes) => {
+            const accessToken = authRes.data.accessToken;
+            const user = authRes.data.user;
             useAuthStore.getState().setAccessToken(accessToken);
             useAuthStore.getState().setUser(user);
         },
@@ -51,8 +53,3 @@ export const useLogout = () =>
             useAuthStore.getState().clearAuth();
         },
     });
-
-export function useIsLoggedIn() {
-    const accessToken = useAuthStore((state) => state.accessToken);
-    return Boolean(accessToken);
-}
