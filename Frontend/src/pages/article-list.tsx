@@ -1,4 +1,4 @@
-import useArticles from "@/hooks/Articles/useArticles";
+import useArticles from "@/hooks/articles/useArticles";
 import { Skeleton } from "@/components/ui/skeleton"
 import ErrorAlert from "@/components/commons/error-alert";
 import ArticleCard from "@/components/articles/card";

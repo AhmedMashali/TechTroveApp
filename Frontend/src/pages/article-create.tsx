@@ -1,6 +1,6 @@
 import { Formik, Field, Form } from 'formik';
 import * as z from 'zod';
-import { useCreateArticle } from '@/hooks/Articles/useCreateArticle';
+import { useCreateArticle } from '@/hooks/articles/useCreateArticle';
 import ArticleEditor from '@/components/articles/articleEditor';
 
 const articleSchema = z.object({

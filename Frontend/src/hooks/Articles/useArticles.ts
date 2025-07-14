@@ -30,6 +30,7 @@ const useArticles = () => {
     return useQuery({
         queryKey: ['articles'],
         queryFn: () => getArticles(),
+        select: (res) => res.data.articles,
         refetchOnWindowFocus: false,
     });
 };
