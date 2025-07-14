@@ -1,36 +1,24 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-interface User {
-  _id: string;
-  username: string;
-}
+type AuthState = {
+    accessToken: string | null;
+    user: { _id: string; username: string } | null;
+    setAccessToken: (token: string) => void;
+    setUser: (user: AuthState['user']) => void;
+    clearAuth: () => void;
+};
 
-interface AuthState {
-  token: string | null;
-  user: User | null;
-  login: (token: string, user: User) => void;
-  logout: () => void;
-  isLoggedIn: () => boolean; // computed logic
-}
-
-export const useAuthStore = create<AuthState>((set, get) => ({
-  token: null,
-  user: null,
-
-  login: (token, user) =>
-    set({
-      token,
-      user,
-    }),
-
-  logout: () =>
-    set({
-      token: null,
-      user: null,
-    }),
-
-  isLoggedIn: () => {
-    console.log(get().token);
-    return !!get().token;
-  },
+export const useAuthStore = create<AuthState>((set) => ({
+    accessToken: null,
+    user: null,
+    setAccessToken: (token) => {
+        return set({ accessToken: token });
+    },
+    setUser: (user) => set({ user }),
+    clearAuth: () => set({ accessToken: null, user: null }),
 }));
+
+export const getAccessToken = (): string | null =>
+    useAuthStore.getState().accessToken;
+export const setAccessToken = (token: string) =>
+    useAuthStore.getState().setAccessToken(token);

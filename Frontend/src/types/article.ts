@@ -1,4 +1,3 @@
-
 export type Article = {
     avataricon: string;
     id: string;

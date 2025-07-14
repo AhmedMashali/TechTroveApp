@@ -1,34 +1,58 @@
-import axios from "@/lib/axios";
-import { useMutation } from "@tanstack/react-query";
+import axios from '@/lib/axios';
+import { useMutation } from '@tanstack/react-query';
+import { z } from 'zod';
+import { useAuthStore } from '@/store/auth';
 
-interface RegisterPayload {
-  username: string;
-  password: string;
-}
+const loginSchema = z.object({
+    username: z.string().min(3),
+    password: z.string().min(8),
+});
 
-interface RegisterResponse {
-  token: string;
-  user: {
-    _id: string;
-    username: string;
-  };
-}
+const registerSchema = loginSchema;
 
-const registerUser = async (data: RegisterPayload): Promise<RegisterResponse> => {
-  const response = await axios.post("/auth/register", data);
-
-  if (!response.data.success) {
-    throw new Error(response.data.message || "Registration failed");
-  }
-
-  return response.data.data;
+const loginUser = async (data: z.infer<typeof loginSchema>) => {
+    const res = await axios.post('/auth/login', data);
+    return res.data;
 };
 
-const useRegister = () => {
-  return useMutation({
-    mutationKey: ["register"],
-    mutationFn: registerUser,
-  });
+const registerUser = async (data: z.infer<typeof registerSchema>) => {
+    const res = await axios.post('/auth/register', data);
+    return res.data;
 };
 
-export default useRegister;
+const logoutUser = async () => {
+    await axios.post('/auth/logout');
+};
+
+export const useLogin = () =>
+    useMutation({
+        mutationFn: loginUser,
+        onSuccess: ({ accessToken, user }) => {
+            useAuthStore.getState().setAccessToken(accessToken);
+            useAuthStore.getState().setUser(user);
+        },
+    });
+
+export const useRegister = () =>
+    useMutation({
+        mutationFn: registerUser,
+        onSuccess: (authRes) => {
+            const accessToken = authRes.data.accessToken;
+            const user = authRes.data.user;
+            useAuthStore.getState().setAccessToken(accessToken);
+            useAuthStore.getState().setUser(user);
+        },
+    });
+
+export const useLogout = () =>
+    useMutation({
+        mutationFn: logoutUser,
+        onSuccess: () => {
+            useAuthStore.getState().clearAuth();
+        },
+    });
+
+export function useIsLoggedIn() {
+    const accessToken = useAuthStore((state) => state.accessToken);
+    return Boolean(accessToken);
+}
