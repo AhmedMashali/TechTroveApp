@@ -71,7 +71,7 @@ const ArticleCreate = () => {
                                 type='submit'
                                 className='mt-4 rounded bg-black px-4 py-2 text-white'
                             >
-                                Submit Article
+                                Post The Article
                             </button>
                         </div>
                     </Form>

@@ -28,20 +28,32 @@ const ArticleEditor = ({ name, value, onChange }: ArticleEditorProps) => {
                 height: 650,
                 menubar: false,
                 plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount',
+                    'link',
+                    'table',
+                    'lists',
+                    'code',
+                    'fullscreen',
+                    'preview',
                     'emoticons',
+                    'advlist',
+                    'autolink',
+                    'lists',
+                    'formatpainter',
                 ],
                 toolbar:
-                    'undo redo | bold italic underline strikethrough | ' +
-                    'alignleft aligncenter alignright alignjustify | formatselect fontsizeselect' +
-                    'bullist numlist table outdent indent | link image | code | fullscreen | preview | ' +
-                    'forecolor backcolor emoticons',
+                    'undo redo | formatselect fontsizeselect | ' +
+                    'bold italic underline strikethrough forecolor backcolor | ' +
+                    'alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent | table | link | code | fullscreen preview emoticons',
                 toolbar_mode: 'floating',
-                content_style:
-                    'body { font-family:Arial,sans-serif; font-size:14px; }',
                 branding: false,
+                formats: {
+                    bold: { inline: 'strong' },
+                    italic: { inline: 'em' },
+                    underline: { inline: 'u' },
+                    strikethrough: { inline: 'strike' },
+                },
+                fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt',
             }}
         />
     );
