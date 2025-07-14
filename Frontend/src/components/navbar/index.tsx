@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="bg-white-800 text-white px-6 py-4">
+          <nav className="bg-white-800 text-white px-6 py-4">
             <div className="max-w-6xl mx-auto flex justify-between">
                 <Link to="/">
                 <img src="src/assets/logo2.png" alt="Logo" className="h-8 inline-block mr-2" />
@@ -47,7 +47,7 @@ const Navbar = () => {
                     </NavigationMenuItem>
                 </NavigationMenu>
             </div>
-        </nav>
+          </nav>
         <hr />
         </>
     );
