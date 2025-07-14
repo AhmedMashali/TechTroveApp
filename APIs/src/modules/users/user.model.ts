@@ -5,6 +5,7 @@ export interface UserDocument extends Document {
     _id: ObjectId;
     username: string;
     password: string;
+    refreshToken: string;
     createdAt: Date;
     updatedAt: Date;
     comparePassword(candidatePassword: string): Promise<boolean>;
@@ -24,8 +25,10 @@ const userSchema = new Schema<UserDocument, UserModel>(
         password: {
             type: String,
             required: [true, 'Password is required'],
-            minlength: [8, 'Password must be at least 8 characters'],
-            maxlength: [32, 'Password must be fewer than 32 characters long'],
+            select: false
+        },
+        refreshToken: {
+            type: String,
             select: false
         }
     },

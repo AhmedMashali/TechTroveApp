@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cookieParser from 'cookie-parser';
 
 import corsOptions from './config/cors.config';
 import { notFoundHandler } from './middlewares/not-found.middleware';
@@ -12,6 +13,8 @@ app.use(corsOptions);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 app.use(passportInitialize);
 
 app.use('/api', routes);

@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose';
 
 export type AuthResponse = {
-    token: string;
+    accessToken: string;
     user: {
         _id: ObjectId;
         username: string;
