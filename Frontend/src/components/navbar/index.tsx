@@ -6,9 +6,11 @@ import WrittIcon from "remixicon-react/QuillPenLineIcon";
 import ArticleIcon from "remixicon-react/ArticleLineIcon";
 import AboutIcon from "remixicon-react/InformationLineIcon";
 import useCurrentTab from "@/hooks/useCurrentTab";
+import { useAuthStore } from "@/store/auth";
 
 const Navbar = () => {
     const activeTab = useCurrentTab();
+    const { isLoggedIn } = useAuthStore();
 
     return (
         <>
@@ -45,6 +47,26 @@ const Navbar = () => {
                             Write
                         </Link>
                     </NavigationMenuItem>
+                    {!isLoggedIn() ? (
+                        <>
+                            <NavigationMenuItem>
+                                <Link to="/login" className={`text-black hover:text-gray-500 text-md ${activeTab === 'login' ? 'font-bold' : ''}`}>
+                                    Sign In                          
+                                </Link>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <Link to="/register" className={`text-black hover:text-gray-500 text-md ${activeTab === 'register' ? 'font-bold' : ''}`}>
+                                    Sign Up
+                                </Link>
+                            </NavigationMenuItem>
+                        </>
+                    ) : (
+                        <NavigationMenuItem>
+                            <Link to="/register" className={`text-black hover:text-gray-500 text-md ${activeTab === 'register' ? 'font-bold' : ''}`}>
+                                Sign Out
+                            </Link>
+                        </NavigationMenuItem>
+                    )}
                 </NavigationMenu>
             </div>
           </nav>

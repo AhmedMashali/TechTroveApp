@@ -12,7 +12,11 @@ const useCurrentTab = () => {
     } else if (path === "/my-articles") {
       return "my-articles"; 
     } else if (path === "/create") {
-      return "create"; 
+      return "create";
+    } else if (path === '/login') {
+      return "login";
+    } else if (path === '/register') {
+      return "register";
     } else {
       return "not-found";
     }
