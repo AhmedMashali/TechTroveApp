@@ -9,7 +9,6 @@ import Login from './pages/auth/login';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Register } from './pages/auth/register';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useAuthStore } from './store/auth';
 
 const queryClient = new QueryClient();
 
