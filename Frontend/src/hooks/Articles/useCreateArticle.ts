@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { BASE_URL } from '@/constants/APIs';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '@/lib/axios';
 
 type ArticleRequest = {
     title: string;
