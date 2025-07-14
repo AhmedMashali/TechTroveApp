@@ -1,14 +1,14 @@
 import useArticles from '@/hooks/articles/useArticles';
 import { Skeleton } from '@/components/ui/skeleton';
 import ErrorAlert from '@/components/commons/error-alert';
-import ArticleCard from '@/components/articles/card';
 import NotFoundAlert from '@/components/commons/not-found-alert';
+import type { Article } from '@/types/article';
+import ArticleCard from '@/components/articles/card';
 
 const ArticleList = () => {
     const { data: articles, isLoading, error } = useArticles();
 
     if (isLoading) {
-        // here we gonna use selekelaton
         return (
             <>
                 <div className='flex flex-col space-y-3 p-4'>
@@ -31,13 +31,22 @@ const ArticleList = () => {
     }
 
     if (error) {
-        // handle error state
-        return <ErrorAlert />;
+        return (
+            <ErrorAlert
+                title='Error fetching articles'
+                description='There was an issue fetching the articles.'
+                userMessage={[
+                    'Make sure the route exists',
+                    'Check your network connection',
+                    'Please try again later.',
+                ]}
+            />
+        );
     }
 
     return articles?.length ? (
-        articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+        articles.map((article: Article) => (
+            <ArticleCard key={article._id} article={article} />
         ))
     ) : (
         <NotFoundAlert />

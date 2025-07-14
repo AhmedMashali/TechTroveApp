@@ -3,26 +3,28 @@ import { useQuery } from '@tanstack/react-query';
 import axios from '@/lib/axios';
 import type { Article } from '@/types/article';
 
-const getArticles = async (): Promise<{
-    data: { articles: { articles: Article[] } };
+const getArticle = async (
+    id: string
+): Promise<{
+    data: { article: Article };
 }> => {
     try {
         const response = await axios.get<{
-            data: { articles: { articles: Article[] } };
-        }>(`${BASE_URL}/articles`);
+            data: { article: Article };
+        }>(`${BASE_URL}/articles/${id}`);
         return response.data;
     } catch {
         throw new Error('Network request failed');
     }
 };
 
-const useArticles = () => {
+const useArticle = (id: string) => {
     return useQuery({
-        queryKey: ['articles'],
-        queryFn: () => getArticles(),
-        select: (res) => res.data.articles.articles,
+        queryKey: ['article', id],
+        queryFn: () => getArticle(id),
+        select: (res) => res.data.article,
         refetchOnWindowFocus: false,
     });
 };
 
-export default useArticles;
+export default useArticle;

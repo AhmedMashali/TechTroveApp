@@ -6,7 +6,6 @@ import {
 import { Link } from 'react-router-dom';
 import HomeIcon from 'remixicon-react/Home2LineIcon';
 import WrittIcon from 'remixicon-react/QuillPenLineIcon';
-import ArticleIcon from 'remixicon-react/ArticleLineIcon';
 import AboutIcon from 'remixicon-react/InformationLineIcon';
 import useCurrentTab from '@/hooks/useCurrentTab';
 import { useIsLoggedIn } from '@/hooks/auth/useRegister';
@@ -37,18 +36,6 @@ const Navbar = () => {
                                     className='mr-1 inline-block pb-1'
                                 />
                                 Home
-                            </Link>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <Link
-                                to='/my-articles'
-                                className={`text-md text-black hover:text-gray-500 ${activeTab === 'my-articles' ? 'font-bold' : ''}`}
-                            >
-                                <ArticleIcon
-                                    size={22}
-                                    className='mr-1 inline-block pb-1'
-                                />
-                                My Articles
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem>

@@ -9,13 +9,12 @@ body {
 
 #root {
     flex-grow: 1;
-    height: 100vh;
     display: flex;
 }
 
 :root {
     --primary-color: #000000;
-    --background-color: #efe6e6;
+    --background-color: #ffffff;
 
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
