@@ -86,6 +86,7 @@ export function Register() {
                                     type='text'
                                     placeholder='newuser'
                                     {...formik.getFieldProps('username')}
+                                    disabled={isPending}
                                 />
                                 {formik.touched.username &&
                                     formik.errors.username && (
@@ -102,6 +103,7 @@ export function Register() {
                                     type='password'
                                     placeholder='••••••••'
                                     {...formik.getFieldProps('password')}
+                                    disabled={isPending}
                                 />
                                 {formik.touched.password &&
                                     formik.errors.password && (
@@ -111,19 +113,19 @@ export function Register() {
                                     )}
                             </div>
 
-                            <Button
-                                type='submit'
-                                className='w-full cursor-pointer'
-                            >
-                                {isPending ? (
-                                    <>
-                                        <Loader2Icon className='animate-spin' />
-                                        Please wait
-                                    </>
-                                ) : (
-                                    'Register'
-                                )}
-                            </Button>
+                            {!isPending ? (
+                                <Button
+                                    type='submit'
+                                    className='w-full cursor-pointer'
+                                >
+                                    register
+                                </Button>
+                            ) : (
+                                <Button disabled className='w-full'>
+                                    <Loader2Icon className='animate-spin' />
+                                    Please wait
+                                </Button>
+                            )}
                         </form>
                     </CardContent>
 
