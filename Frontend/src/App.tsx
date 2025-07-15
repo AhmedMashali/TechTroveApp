@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Register } from './pages/auth/register';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import About from './pages/about';
+import PresistLogin from './components/auth/presist-login';
 
 const queryClient = new QueryClient();
 
@@ -19,17 +20,25 @@ function App() {
             <ReactQueryDevtools initialIsOpen={true} />
             <Router>
                 <Routes>
-                    <Route path='/' element={<MainLayout />}>
-                        <Route index element={<ArticleList />} />
-                        <Route path='articles' element={<ArticleList />} />
-                        <Route path='my-articles' element={<MyArticleList />} />
-                        <Route path='create' element={<ArticleCreate />} />
-                        <Route path='edit/:id' element={<ArticleEdit />} />
-                        <Route path='articles/:id' element={<ArticleView />} />
-                        <Route path='about' element={<About />} />
-                        <Route path='login' element={<Login />} />
-                        <Route path='register' element={<Register />} />
-                        <Route path='*' element={<div>Not Found</div>} />
+                    <Route element={<PresistLogin />}>
+                        <Route path='/' element={<MainLayout />}>
+                            <Route index element={<ArticleList />} />
+                            <Route path='articles' element={<ArticleList />} />
+                            <Route
+                                path='my-articles'
+                                element={<MyArticleList />}
+                            />
+                            <Route path='create' element={<ArticleCreate />} />
+                            <Route path='edit/:id' element={<ArticleEdit />} />
+                            <Route
+                                path='articles/:id'
+                                element={<ArticleView />}
+                            />
+                            <Route path='about' element={<About />} />
+                            <Route path='login' element={<Login />} />
+                            <Route path='register' element={<Register />} />
+                            <Route path='*' element={<div>Not Found</div>} />
+                        </Route>
                     </Route>
                 </Routes>
             </Router>
