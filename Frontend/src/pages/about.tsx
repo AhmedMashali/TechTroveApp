@@ -3,7 +3,7 @@ const About = () => {
         <main className='bg-white px-6 py-12 text-gray-800 md:px-20'>
             {/* Hero */}
             <header className='mb-12 text-center'>
-                <h1 className='mb-4 text-4xl font-extrabold text-blue-600 md:text-5xl'>
+                <h1 className='text-black-600 mb-4 text-4xl font-extrabold md:text-5xl'>
                     Welcome to Our Blog
                 </h1>
                 <p className='mx-auto max-w-2xl text-lg text-gray-600'>
