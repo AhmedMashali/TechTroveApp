@@ -4,7 +4,6 @@ import {
     CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
@@ -14,8 +13,8 @@ import { useFormik } from 'formik';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from '@/hooks/auth/useRegister';
 import { Loader2Icon } from 'lucide-react';
+import { useLogin } from '@/hooks/auth/useLogin';
 
 const schema = z.object({
     username: z
