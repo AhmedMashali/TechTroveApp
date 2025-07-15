@@ -2,14 +2,14 @@ import axios from '@/lib/axios';
 import { useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '@/store/auth';
 
-const registerUser = async (data: any) => {
-    const res = await axios.post('/auth/register', data);
+const loginUser = async (data: any) => {
+    const res = await axios.post('/auth/login', data);
     return res.data;
 };
 
-export const useRegister = () => {
+export const useLogin = () => {
     return useMutation({
-        mutationFn: registerUser,
+        mutationFn: loginUser,
         onSuccess: (authRes) => {
             const accessToken = authRes.data.accessToken;
             const user = authRes.data.user;
