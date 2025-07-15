@@ -18,14 +18,11 @@ const articleSchema = new Schema<ArticleDocument, ArticleModel>(
             type: String,
             required: true
         },
-        description: {
-            type: String
-        },
         content: {
             type: String,
-            requireD: true,
-            minlength: 200,
-            maxlength: 1000
+            required: true,
+            minlength: 50,
+            maxlength: 10000
         },
         author: {
             type: Schema.Types.ObjectId,

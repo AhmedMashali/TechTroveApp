@@ -7,7 +7,7 @@ export class CreateArticleDto {
 
     @IsNotEmpty()
     @IsString()
-    @MinLength(200, { message: 'Content must be at least 200 characters long' })
-    @MaxLength(1000, { message: 'Content must be fewer than 1000 characters long' })
+    @MinLength(50, { message: 'Content must be at least 50 characters long' })
+    @MaxLength(10000, { message: 'Content must be fewer than 10000 characters long' })
     content!: string;
 }
