@@ -9,7 +9,7 @@ import AboutIcon from 'remixicon-react/InformationLineIcon';
 import useCurrentTab from '@/hooks/useCurrentTab';
 import { isLoggedIn } from '@/store/auth';
 import { Button } from '../ui/button';
-import { useLogout } from '@/hooks/auth/useRegister';
+import { useLogout } from '@/hooks/auth/useLogout';
 
 const Navbar = () => {
     const activeTab = useCurrentTab();
