@@ -13,7 +13,6 @@ export const createArticle = async (
     try {
         const newArticle = new Article({
             title: createArticleDto.title,
-            description: createArticleDto.description,
             content: createArticleDto.content,
             author: currentUser._id
         });
@@ -46,6 +45,7 @@ export const getArticleList = async (
             .skip(skipArticles)
             .limit(limit)
             .lean()
+            .populate('author', 'username')
             .exec();
         return { articles };
     } catch (error) {

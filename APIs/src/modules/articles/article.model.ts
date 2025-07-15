@@ -19,10 +19,7 @@ const articleSchema = new Schema<ArticleDocument, ArticleModel>(
             required: true
         },
         description: {
-            type: String,
-            required: true,
-            minlength: 30,
-            maxlength: 250
+            type: String
         },
         content: {
             type: String,
