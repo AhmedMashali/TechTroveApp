@@ -53,7 +53,6 @@ const Login = () => {
                 toast.success('Logged in successfully.');
                 navigate('/');
             } catch (error: any) {
-                console.log(error);
                 toast.error('Failed to login.');
             }
         },

@@ -42,9 +42,7 @@ export const refreshUserToken = async (req: Request, res: Response, next: NextFu
 
 export const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log('req.user', req.user);
         const userId = (req as any).user._id;
-        console.log('userId', userId);
         await authService.logout(userId, res);
         successResponse(res, null, 'Logged out');
     } catch (error) {
