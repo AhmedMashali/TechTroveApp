@@ -1,6 +1,5 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
-import { TINYMCE_API_KEY } from '@/constants/APIs';
 
 type ArticleEditorProps = {
     name: string;
@@ -20,7 +19,7 @@ const ArticleEditor = ({ name, value, onChange }: ArticleEditorProps) => {
 
     return (
         <Editor
-            apiKey={TINYMCE_API_KEY}
+            apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
             value={editorContent}
             name={name}
             onEditorChange={handleEditorChange}
