@@ -8,9 +8,12 @@ import WrittIcon from 'remixicon-react/QuillPenLineIcon';
 import AboutIcon from 'remixicon-react/InformationLineIcon';
 import useCurrentTab from '@/hooks/useCurrentTab';
 import { isLoggedIn } from '@/store/auth';
+import { Button } from '../ui/button';
+import { useLogout } from '@/hooks/auth/useRegister';
 
 const Navbar = () => {
     const activeTab = useCurrentTab();
+    const { mutate: logout, isPending: isLoggingout } = useLogout();
 
     return (
         <>
@@ -66,7 +69,9 @@ const Navbar = () => {
                                         to='/register'
                                         className={`text-md text-black hover:text-gray-500 ${activeTab === 'register' ? 'font-bold' : ''}`}
                                     >
-                                        Sign Up
+                                        <Button className='cursor-pointer'>
+                                            Sign Up
+                                        </Button>
                                     </Link>
                                 </NavigationMenuItem>
                             </>
@@ -85,12 +90,13 @@ const Navbar = () => {
                                     </Link>
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
-                                    <Link
-                                        to='/register'
-                                        className={`text-md text-black hover:text-gray-500 ${activeTab === 'register' ? 'font-bold' : ''}`}
+                                    <Button
+                                        className='cursor-pointer'
+                                        onClick={async () => await logout()}
+                                        disabled={isLoggingout}
                                     >
-                                        Sign Out
-                                    </Link>
+                                        Log out
+                                    </Button>
                                 </NavigationMenuItem>
                             </>
                         )}
